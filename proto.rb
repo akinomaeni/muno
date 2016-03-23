@@ -1,31 +1,6 @@
-class Responder
-  attr_reader :name
+$LOAD_PATH << '.'
+require 'unmo'
 
-  def initialize(name)
-    @name = name
-  end
-
-  def response(input)
-    return "#{input}ってなに？"
-  end
-end
-
-class Unmo
-  attr_reader :name
-
-  def initialize(name)
-    @name = name
-    @responder = Responder.new('What')
-  end
-
-  def dialogue(input)
-    @responder.response(input)
-  end
-
-  def responder_name
-    @responder.name
-  end
-end
 
 def prompt(unmo)
   "#{unmo.name}:#{unmo.responder_name}> "
