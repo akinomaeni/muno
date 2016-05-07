@@ -1,3 +1,5 @@
+require 'pry'
+require 'pry-byebug'
 require 'haml'
 
 class MunoApp
@@ -5,6 +7,12 @@ class MunoApp
     request = Rack::Request.new(env)
     if request.get? && request.path == '/'
       Rack::Response.new(render('home/index.html.haml'))
+    elsif request.post? && request.path == "/messages"
+      # binding.pry
+      p request['message.body']
+      p request['message']
+      p request['message']['body']
+      Rack::Response.new(request['message']['body'])
     else
       Rack::Response.new('404 Not Found.', '404')
     end
